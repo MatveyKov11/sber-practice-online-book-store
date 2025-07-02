@@ -1,4 +1,4 @@
-package com.example.book_store;
+package com.example.book_store.controllers;
 
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
