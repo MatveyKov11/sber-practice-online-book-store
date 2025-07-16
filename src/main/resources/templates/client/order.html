@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Корзина товаров</title>
+    <title>Состав заказа</title>
     <link th:href="@{/styles/admin.css}" rel="stylesheet" />
 </head>
 <body style="background-color: rgb(255 236 217)">
@@ -20,7 +20,7 @@
         Корзина
     </div>
     <div class="icon_3">
-        <form method="GET" th:action="@{/client/shopping-history}">
+        <form method="GET" th:action="@{//client/shopping-history}">
             <button width="50px"><img th:src="@{/images/order.png}" width="50px"></button>
         </form>
         История</br>
@@ -40,11 +40,11 @@
     </div>
 </div>
 <div class="main_frame">
-    <div class="t2">Книги в корзине</div>
+    <div class="t2">Книги в заказе</div>
     <div class="r2">
-        <p>Всего книг: <span th:text="${cart.books.size()}" /></p>
+        <p>Всего книг: <span th:text="${orderById.books.size()}" /></p>
     </div>
-    <div class="block" th:each="book: ${cart.books}">
+    <div class="block" th:each="book: ${orderById.books}">
         <div class="image_container_small">
             <img class="image" th:src="${book.urlPicture}">
         </div>
@@ -63,22 +63,12 @@
                 <p>Цена: <span th:text="${book.cost}"/> р.</p>
             </div>
             <button class="small_button" th:onclick="'location.href=\'/book/'+${book.id}+'\''">Узнать подробнее</button>
-            <form method="GET">
-                <button class="small_button" th:if="${book.count<1}" disabled>Товар закончился</button>
-                <button class="small_button" th:if="${book.count>=1}">Добавить ещё</button>
-            </form>
-            <form method="GET" th:action="@{'/client/delete/'+${book.id}}">
-                <button class="small_button">Убрать из корзины</button>
-            </form>
         </div>
     </div>
     <div class="b1">
-        <p>Итого: <span th:text="${cart.totalCost}"/> р.</p>
-    </div>
-    <div class="controls">
-        <form method="POST" th:actipn="@{/employee/cart}" class="control">
-            <button class="big_button">Оформить заказ</button>
-        </form>
+        <p>Итого: <span th:text="${orderById.totalCost}"/> р.</p>
+        <p>Статус заказа: <span th:if="${orderById.done}">выполнен</span><span th:if="${!orderById.done}">в процессе</span></p>
+        <p>Дата создания/выполнения заказа: <span th:text="${orderById.date}"/></p>
     </div>
 </div>
 </body>

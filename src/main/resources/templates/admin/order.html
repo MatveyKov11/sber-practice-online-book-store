@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Состав заказа</title>
+  <link th:href="@{/styles/admin.css}" rel="stylesheet" />
+</head>
+<body style="background-color: rgb(255 236 217)">
+<div class="settings">
+  <div class="icon_1">
+    <form method="GET" th:action="@{/admin/}">
+      <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
+    </form>
+    Главная
+  </div>
+  <div class="icon_2">
+    <form method="GET" th:action="@{/admin/clients}">
+      <button width="50px"><img th:src="@{/images/client.png}" width="50px"></button>
+    </form>
+    Клиенты
+  </div>
+  <div class="icon_3">
+    <form method="GET" th:action="@{/admin/employees}">
+      <button width="50px"><img th:src="@{/images/employee.png}" width="50px"></button>
+    </form>
+    Работники
+  </div>
+  <div class="icon_4">
+    <form method="GET" th:action="@{/admin/orders}">
+      <button width="50px"><img th:src="@{/images/order.png}" width="50px"></button>
+    </form>
+    Заказы
+  </div>
+  <div class="icon_-2">
+    <form method="GET" th:action="@{/admin/my-profile}">
+      <button width="50px"><img th:src="@{/images/profile.png}" width="50px"></button>
+    </form>
+    Профиль
+  </div>
+  <div class="icon_-1">
+    <form method="POST" th:action="@{/logout}">
+      <button width="50px"><img th:src="@{/images/exit.png}" width="50px"></button>
+    </form>
+    Выйти
+  </div>
+</div>
+<div class="main_frame">
+  <div class="t2">Заказчик</div>
+  <div class="r1">
+    <p>Id заказчика: <a href="#" th:title="${orderById.client}"><span th:text="${orderById.client.id}"/></a></p>
+  </div>
+  <div class="t2">Книги в заказе</div>
+  <div class="r2">
+    <p>Всего книг: <span th:text="${orderById.books.size()}" /></p>
+  </div>
+  <div class="block" th:each="book: ${orderById.books}">
+    <div class="image_container_small">
+      <img class="image" th:src="${book.urlPicture}">
+    </div>
+    <div class="text_container_small">
+      <div class="b1">
+        <p><span th:if="${book.recency}">Новинка! </span>"<span th:text="${book.title}"/>"
+          <span th:text="${book.author}"/></p>
+      </div>
+      <div class="r1">
+        <p>Рейтинг: <span th:if="${book.rate!=-1}" th:text="${book.rate}"/><span th:if="${book.rate==-1}">
+                    рейтинга нет</span>
+        </p>
+        <p>Жанр: <span th:text="${book.genre}"/>, язык: <span th:text="${book.language}"/></p>
+      </div>
+      <div class="b1">
+        <p>Цена: <span th:text="${book.cost}"/> р.</p>
+      </div>
+      <button class="small_button" th:onclick="'location.href=\'/book/'+${book.id}+'\''">Узнать подробнее</button>
+    </div>
+  </div>
+  <div class="b1">
+    <p>Итого: <span th:text="${orderById.totalCost}"/> р.</p>
+    <p>Статус заказа: <span th:if="${orderById.done}">выполнен</span><span th:if="${!orderById.done}">в процессе</span></p>
+    <p>Дата создания/выполнения заказа: <span th:text="${orderById.date}"/></p>
+  </div>
+</div>
+</body>
+</html>

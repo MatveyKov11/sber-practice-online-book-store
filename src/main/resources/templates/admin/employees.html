@@ -3,8 +3,81 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Работники</title>
+    <link th:href="@{/styles/admin.css}" rel="stylesheet" />
 </head>
-<body>
-<h1>Список работников:</h1>
+<body style="background-color: rgb(255 236 217)">
+<div class="settings">
+    <div class="icon_1">
+        <form method="GET" th:action="@{/admin/}">
+            <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
+        </form>
+        Главная
+    </div>
+    <div class="icon_2">
+        <form method="GET" th:action="@{/admin/clients}">
+            <button width="50px"><img th:src="@{/images/client.png}" width="50px"></button>
+        </form>
+        Клиенты
+    </div>
+    <div class="icon_3">
+        <form method="GET" th:action="@{/admin/employees}">
+            <button width="50px"><img th:src="@{/images/employee.png}" width="50px"></button>
+        </form>
+        Работники
+    </div>
+    <div class="icon_4">
+        <form method="GET" th:action="@{/admin/orders}">
+            <button width="50px"><img th:src="@{/images/order.png}" width="50px"></button>
+        </form>
+        Заказы
+    </div>
+    <div class="icon_-2">
+        <form method="GET" th:action="@{/admin/my-profile}">
+            <button width="50px"><img th:src="@{/images/profile.png}" width="50px"></button>
+        </form>
+        Профиль
+    </div>
+    <div class="icon_-1">
+        <form method="POST" th:action="@{/logout}">
+            <button width="50px"><img th:src="@{/images/exit.png}" width="50px"></button>
+        </form>
+        Выйти
+    </div>
+</div>
+<div class="main_frame">
+    <div class="t1">Страница админа</div>
+    <div class="t2">Список сотрудников</div>
+    <div class="table_container">
+        <table class="table">
+            <tr>
+                <th>Логин</th>
+                <th>Пароль</th>
+            </tr>
+            <tr th:each="employee :${employees}">
+                <td th:text="${employee.login}"></td>
+                <td th:text="${employee.password}"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="controls">
+        <form method="POST" th:object="${employee}" class="control">
+            <input type="hidden" value="0" id="id" name="id">
+            <input class="form_field" type="text" th:field="*{login}" placeholder="Логин" required/>
+            <input class="form_field" type="text" th:field="*{password}" placeholder="Пароль"/>
+            <button class="form_button">Добавить работника</button>
+        </form>
+        <form method="POST" th:object="${employee}" class="control">
+            <input type="hidden" value="1" id="id" name="id">
+            <input class="form_field" type="text" th:field="*{login}" placeholder="Логин" required/>
+            <input class="form_field" type="text" th:field="*{password}" placeholder="Новый пароль"/>
+            <button class="form_button">Изменить пароль</button>
+        </form>
+        <form method="POST" th:object="${employee}" class="control">
+            <input type="hidden" value="2" id="id" name="id">
+            <input class="form_field" type="text" th:field="*{login}" placeholder="Логин" required/>
+            <button class="form_button">Удалить работника</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

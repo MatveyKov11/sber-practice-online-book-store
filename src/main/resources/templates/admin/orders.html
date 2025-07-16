@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Заказы</title>
+  <link th:href="@{/styles/admin.css}" rel="stylesheet" />
+</head>
+<body style="background-color: rgb(255 236 217)">
+<div class="settings">
+  <div class="icon_1">
+    <form method="GET" th:action="@{/admin/}">
+      <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
+    </form>
+    Главная
+  </div>
+  <div class="icon_2">
+    <form method="GET" th:action="@{/admin/clients}">
+      <button width="50px"><img th:src="@{/images/client.png}" width="50px"></button>
+    </form>
+    Клиенты
+  </div>
+  <div class="icon_3">
+    <form method="GET" th:action="@{/admin/employees}">
+      <button width="50px"><img th:src="@{/images/employee.png}" width="50px"></button>
+    </form>
+    Работники
+  </div>
+  <div class="icon_4">
+    <form method="GET" th:action="@{/admin/orders}">
+      <button width="50px"><img th:src="@{/images/order.png}" width="50px"></button>
+    </form>
+    Заказы
+  </div>
+  <div class="icon_-2">
+    <form method="GET" th:action="@{/admin/my-profile}">
+      <button width="50px"><img th:src="@{/images/profile.png}" width="50px"></button>
+    </form>
+    Профиль
+  </div>
+  <div class="icon_-1">
+    <form method="POST" th:action="@{/logout}">
+      <button width="50px"><img th:src="@{/images/exit.png}" width="50px"></button>
+    </form>
+    Выйти
+  </div>
+</div>
+<div class="main_frame">
+  <div class="t1">Страница админа</div>
+  <div class="t2">Список заказов</div>
+  <div class="table_container">
+    <table class="table">
+      <tr>
+        <th>Id заказчика</th>
+        <th>Цена</th>
+        <th>Id книг в заказе</th>
+        <th>Дата создания/выполнения</th>
+        <th>Статус</th>
+        <th></th>
+      </tr>
+      <tr th:each="order :${orders}">
+
+        <td><a href="#" th:title="${order.client}"><span th:text="${order.client.id}"/></a></td>
+        <td th:text="${order.totalCost}"></td>
+        <td>
+          <div th:each="book :${order.books}">
+            <a th:href="@{'/book/'+${book.id}}">
+              <span th:text="${book.id}"></span>
+            </a>
+          </div>
+        </td>
+        <td th:text="${#dates.format(order.date, 'dd-MMM-yyyy')}"></td>
+        <td>
+          <div th:if="${order.done}">Выполнен</div>
+          <div th:if="${!order.done}">В процессе</div>
+        </td>
+        <td>
+          <button class="small_button2" th:onclick="'location.href=\'/admin/order/'+${order.id}+'\''">Подробнее</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="controls">
+    <form method="POST" th:object="${filterO}" class="control">
+      <input class="form_field" th:field="*{str}" placeholder="Логин заказчика"/>
+      <button id="find_btn" class="form_button">Найти</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

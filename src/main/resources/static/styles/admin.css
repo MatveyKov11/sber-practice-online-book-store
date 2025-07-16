@@ -1,0 +1,220 @@
+.settings{
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 0px;
+    width: 7%;
+    height: 100%;
+    background-color: rgb(255 191 95);
+}
+
+.main_frame{
+    margin-left: 10%;
+    width: 90%;
+    height: 100%;
+    background-color: rgb(255 236 217);
+}
+
+.chapters{
+    display: flex;
+    justify-content: flex-start;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 60px;
+    background-color: rgb(255 191 95);
+}
+
+.chap_button{
+    padding: 16px 0px;
+    width: 33%;
+    font-size: 20px;
+    background-color: rgb(255 191 95);
+}
+
+.t1{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.t2{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.r1{
+    text-align: left;
+    font-size: 16px;
+}
+
+.r2{
+    text-align: left;
+    font-size: 12px;
+}
+
+.table_container{
+    width: 80%;
+    margin-left: 10%;
+    background-color: rgb(255 236 217);
+    align-content: center;
+}
+
+.table{
+    border: 1px solid #eee;
+    table-layout: fixed;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.table th {
+    font-weight: bold;
+    padding: 5px;
+    background: #efefef;
+    border: 1px solid #dddddd;
+}
+.table td{
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    text-align: left;
+}
+.table tbody tr:nth-child(odd){
+    background: #fff;
+}
+.table tbody tr:nth-child(even){
+    background: #F7F7F7;
+}
+
+.controls{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.control{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.clm_control{
+    width: 100%;
+    margin-bottom: 10px;
+    grid-auto-flow: column
+}
+
+.form_field{
+    width: 32%;
+    margin-right: 1%;
+}
+
+.form_button{
+    width: 30%;
+}
+
+.small_button{
+    width: 60%;
+    height: 32px;
+    font-size: 18px;
+    margin-left: 10%;
+    margin-bottom: 12px;
+}
+
+.icon_1{
+    position: absolute;
+    margin-top: 5px;
+    width: 90%;
+    margin-left: 12px;
+    height: auto;
+}
+
+.icon_2{
+    position: absolute;
+    margin-top: 65px;
+    width: 90%;
+    margin-left: 12px;
+    height: auto;
+}
+
+.icon_3{
+    position: absolute;
+    margin-top: 145px;
+    width: 90%;
+    margin-left: 12px;
+    height: auto;
+}
+
+.icon_4{
+    position: absolute;
+    margin-top: 230px;
+    width: 90%;
+    margin-left: 12px;
+    height: auto;
+}
+
+.icon_-2{
+    position: absolute;
+    margin-top: 490px;
+    width: 90%;
+    margin-left: 12px;
+    height: auto;
+}
+
+.icon_-1{
+    position: absolute;
+    margin-top: 560px;
+    width: 90%;
+    margin-left: 12px;
+    height: auto;
+}
+
+.image_container_big{
+    width: 80%;
+    height: auto;
+    margin-left: 10%;
+    margin-bottom: 20px;
+}
+
+.image{
+    width: 100%;
+    border: 2px solid rgb(0 0 0);
+}
+
+.text_container_big{
+    width: 80%;
+    height: auto;
+    margin-left: 10%;
+    margin-bottom: 20px;
+}
+
+.big_button{
+    width: 80%;
+    height: 48px;
+    font-size: 24px;
+    margin-left: 10%;
+}
+
+.small_button2{
+    width: 80%;
+    height: 32px;
+    font-size: 12px;
+    margin-left: 10%;
+    margin-bottom: 12px;
+}
+
+.block{
+    width: 100%;
+    height: auto;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.image_container_small{
+    width: 30%;
+    height: auto;
+    margin-left: 10%;
+}
+
+.text_container_small{
+    width: 50%;
+    height: auto;
+    margin-left: 10%;
+}

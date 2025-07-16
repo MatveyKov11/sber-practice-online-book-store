@@ -3,8 +3,73 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>История покупок</title>
+    <link th:href="@{/styles/admin.css}" rel="stylesheet" />
 </head>
-<body>
-<h1>Ваша история покупок</h1>
+<body style="background-color: rgb(255 236 217)">
+<div class="settings">
+    <div class="icon_1">
+        <form method="GET" th:action="@{/}">
+            <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
+        </form>
+        В магазин
+    </div>
+    <div class="icon_2">
+        <form method="GET" th:action="@{/client/cart}">
+            <button width="50px"><img th:src="@{/images/cart.png}" width="50px"></button>
+        </form>
+        Корзина
+    </div>
+    <div class="icon_3">
+        <form method="GET" th:action="@{/client/shopping-history}">
+            <button width="50px"><img th:src="@{/images/order.png}" width="50px"></button>
+        </form>
+        История</br>
+        заказов
+    </div>
+    <div class="icon_-2">
+        <form method="GET" th:action="@{/client/my-profile}">
+            <button width="50px"><img th:src="@{/images/profile.png}" width="50px"></button>
+        </form>
+        Профиль
+    </div>
+    <div class="icon_-1">
+        <form method="POST" th:action="@{/logout}">
+            <button width="50px"><img th:src="@{/images/exit.png}" width="50px"></button>
+        </form>
+        Выйти
+    </div>
+</div>
+<div class="main_frame">
+    <div class="t2">Ваши заказы</div>
+    <div class="table_container">
+        <table class="table">
+            <tr>
+                <th>Цена</th>
+                <th>Названия книг в заказе</th>
+                <th>Дата создания/выполнения</th>
+                <th>Статус</th>
+                <th></th>
+            </tr>
+            <tr th:each="order :${ordersByClient}">
+                <td th:text="${order.totalCost}"></td>
+                <td>
+                    <div th:each="book :${order.books}">
+                        <a th:href="@{'/book/'+${book.id}}">
+                            <span th:text="${book.title}"></span>
+                        </a>
+                    </div>
+                </td>
+                <td th:text="${#dates.format(order.date, 'dd-MMM-yyyy')}"></td>
+                <td>
+                    <div th:if="${order.done}">Выполнен</div>
+                    <div th:if="${!order.done}">В процессе</div>
+                </td>
+                <td>
+                    <button class="small_button2" th:onclick="'location.href=\'/client/order/'+${order.id}+'\''">Подробнее</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 </body>
 </html>

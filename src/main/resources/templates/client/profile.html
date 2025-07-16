@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Профиль</title>
+  <link th:href="@{/styles/admin.css}" rel="stylesheet" />
+</head>
+<body style="background-color: rgb(255 236 217)">
+<div class="settings">
+  <div class="icon_1">
+    <form method="GET" th:action="@{/}">
+      <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
+    </form>
+    В магазин
+  </div>
+  <div class="icon_2">
+    <form method="GET" th:action="@{/client/cart}">
+      <button width="50px"><img th:src="@{/images/cart.png}" width="50px"></button>
+    </form>
+    Корзина
+  </div>
+  <div class="icon_3">
+    <form method="GET" th:action="@{/client/shopping-history}">
+      <button width="50px"><img th:src="@{/images/order.png}" width="50px"></button>
+    </form>
+    История</br>
+    заказов
+  </div>
+  <div class="icon_-2">
+    <form method="GET" th:action="@{/client/my-profile}">
+      <button width="50px"><img th:src="@{/images/profile.png}" width="50px"></button>
+    </form>
+    Профиль
+  </div>
+  <div class="icon_-1">
+    <form method="POST" th:action="@{/logout}">
+      <button width="50px"><img th:src="@{/images/exit.png}" width="50px"></button>
+    </form>
+    Выйти
+  </div>
+</div>
+<div class="main_frame">
+  <div class="t2">Ваш профиль</div>
+  </div>
+  <div class="controls">
+    <form method="POST" th:object="${client}" class="clm_control">
+      <div class="r1">Логин: </div>
+      <input class="form_field" type="text" th:field="*{login}" required/>
+      <div class="r1">Пароль: </div>
+      <input class="form_field" type="password" th:field="*{password}" required/>
+      <div class="r1">Фамилия: </div>
+      <input class="form_field" type="text" th:field="*{lastName}" required/>
+      <div class="r1">Имя: </div>
+      <input class="form_field" type="text" th:field="*{firstName}" required/>
+      <div class="r1">Отчество: </div>
+      <input class="form_field" type="text" th:field="*{middleName}"/>
+      <div class="r1">Электронная почта: </div>
+      <input class="form_field" type="email" th:field="*{email}"/>
+      <div class="r1">Номер телефона: </div>
+      <input class="form_field" type="text" th:field="*{phoneNumber}"/>
+      <div class="r1">Дата рождения: </div>
+      <input class="form_field" type="date" th:field="*{dateOfBirth}"/>
+      <button>Сохранить изменения</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -11,9 +11,12 @@ import java.util.Date;
 @Builder
 public class Client {
     private int id;
-    private String first_name;
-    private String last_name;
-    private String password;
+    private String login;
+    private String name;
+
+    private String email;
+    private int age;
 
     private int ordersCnt;
+    private int idLastOrder;
 }

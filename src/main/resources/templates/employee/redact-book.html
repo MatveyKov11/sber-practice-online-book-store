@@ -2,16 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Добавление книги</title>
+    <title>Редактирование книги</title>
     <link th:href="@{/styles/admin.css}" rel="stylesheet" />
 </head>
 <body style="background-color: rgb(255 236 217)">
 <div class="settings">
     <div class="icon_1">
-        <form method="GET" th:action="@{/}">
+        <form method="GET" th:action="@{/book/{id}}">
             <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
         </form>
-        В магазин
+        К книге
+    </div>
+    <div class="icon_2">
+        <form method="GET" th:action="@{/employee/add-book}">
+            <button width="50px"><img th:src="@{/images/book.png}" width="50px"></button>
+        </form>
+        Новая</br>
+        книга
     </div>
     <div class="icon_-2">
         <form method="GET" th:action="@{/employee/my-profile}">
@@ -27,9 +34,9 @@
     </div>
 </div>
 <div class="main_frame">
-    <div class="t2">Форма создания книги</div>
+    <div class="t2">Форма редактирования книги</div>
     <div class="controls">
-        <form method="POST" th:object="${book}" class="clm_control">
+        <form method="POST" th:object="${bookById}" class="clm_control">
             <div class="t2">Обязательная часть</div>
             <div class="r1">Название книги: </div>
             <input class="form_field" type="text" th:field="*{title}" placeholder="Название" required/>
@@ -67,7 +74,7 @@
             <span>Новая</span>
             <input type="radio" name="recency" th:field="*{recency}" value="false" required/>
             <span>Не новая</span>
-            <button>Добавить книгу</button>
+            <button>Сохранить изменения</button>
         </form>
     </div>
 </div>

@@ -3,8 +3,37 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Регистрация</title>
+    <link th:href="@{/styles/admin.css}" rel="stylesheet" />
 </head>
-<body>
-<h1>Тут можно зарегистрироваться</h1>
+<body style="background-color: rgb(255 236 217)">
+<div class="settings">
+</div>
+<div class="main_frame">
+    <div class="t2">Форма регистрации</div>
+    <div class="r1">
+        <a th:href="@{/login}">Авторизация для зарегистрированных пользователей</a>
+    </div>
+    <div class="controls">
+        <form method="POST" th:object="${client}" class="clm_control">
+            <div class="r1">Логин: </div>
+            <input class="form_field" type="text" th:field="*{login}" required/>
+            <div class="r1">Пароль: </div>
+            <input class="form_field" type="password" th:field="*{password}" required/>
+            <div class="r1">Фамилия: </div>
+            <input class="form_field" type="text" th:field="*{lastName}" required/>
+            <div class="r1">Имя: </div>
+            <input class="form_field" type="text" th:field="*{firstName}" required/>
+            <div class="r1">Отчество: </div>
+            <input class="form_field" type="text" th:field="*{middleName}"/>
+            <div class="r1">Электронная почта: </div>
+            <input class="form_field" type="email" th:field="*{email}"/>
+            <div class="r1">Номер телефона: </div>
+            <input class="form_field" type="text" th:field="*{phoneNumber}"/>
+            <div class="r1">Дата рождения: </div>
+            <input class="form_field" type="date" th:field="*{dateOfBirth}"/>
+            <button>Зарегистрироваться</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

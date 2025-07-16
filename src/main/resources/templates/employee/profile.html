@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Профиль</title>
+  <link th:href="@{/styles/admin.css}" rel="stylesheet" />
+</head>
+<body style="background-color: rgb(255 236 217)">
+<div class="settings">
+  <div class="icon_1">
+    <form method="GET" th:action="@{/}">
+      <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
+    </form>
+    В магазин
+  </div>
+  <div class="icon_2">
+    <form method="GET" th:action="@{/employee/add-book}">
+      <button width="50px"><img th:src="@{/images/book.png}" width="50px"></button>
+    </form>
+    Новая</br>
+    книга
+  </div>
+  <div class="icon_-2">
+    <form method="GET" th:action="@{/employee/my-profile}">
+      <button width="50px"><img th:src="@{/images/profile.png}" width="50px"></button>
+    </form>
+    Профиль
+  </div>
+  <div class="icon_-1">
+    <form method="POST" th:action="@{/logout}">
+      <button width="50px"><img th:src="@{/images/exit.png}" width="50px"></button>
+    </form>
+    Выйти
+  </div>
+</div>
+<div class="main_frame">
+  <div class="t2">Ваш профиль</div>
+  <div class="text_container_big">
+    <form method="POST" th:object="${user}" class="control">
+      <label class="form_field" for="username">Логин: </label>
+      <input class="form_field" type="text" id="username" th:field="*{username}" disabled/><br/>
+      <label class="form_field" for="password">Пароль: </label>
+      <input class="form_field" type="password" id="password" th:field="*{password}"/><br/>
+      <button class="form_button" type="submit">Сохранить изменения</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

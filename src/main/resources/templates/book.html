@@ -1,10 +1,168 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Книга</title>
+    <link th:href="@{/styles/admin.css}" rel="stylesheet" />
 </head>
-<body>
-<h1>Информация о книге:</h1>
+<body style="background-color: rgb(255 236 217)">
+<div class="settings" sec:authorize="hasRole('ADMIN')">
+    <div class="icon_1">
+        <form method="GET" th:action="@{/admin/}">
+            <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
+        </form>
+        Главная
+    </div>
+    <div class="icon_2">
+        <form method="GET" th:action="@{/admin/clients}">
+            <button width="50px"><img th:src="@{/images/client.png}" width="50px"></button>
+        </form>
+        Клиенты
+    </div>
+    <div class="icon_3">
+        <form method="GET" th:action="@{/admin/employees}">
+            <button width="50px"><img th:src="@{/images/employee.png}" width="50px"></button>
+        </form>
+        Работники
+    </div>
+    <div class="icon_4">
+        <form method="GET" th:action="@{/admin/orders}">
+            <button width="50px"><img th:src="@{/images/order.png}" width="50px"></button>
+        </form>
+        Заказы
+    </div>
+    <div class="icon_-2">
+        <form method="GET" th:action="@{/admin/my-profile}">
+            <button width="50px"><img th:src="@{/images/profile.png}" width="50px"></button>
+        </form>
+        Профиль
+    </div>
+    <div class="icon_-1">
+        <form method="POST" th:action="@{/logout}">
+            <button width="50px"><img th:src="@{/images/exit.png}" width="50px"></button>
+        </form>
+        Выйти
+    </div>
+</div>
+<div class="settings" sec:authorize="hasRole('CLIENT')">
+    <div class="icon_1">
+        <form method="GET" th:action="@{/}">
+            <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
+        </form>
+        В магазин
+    </div>
+    <div class="icon_2">
+        <form method="GET" th:action="@{/client/cart}">
+            <button width="50px"><img th:src="@{/images/cart.png}" width="50px"></button>
+        </form>
+        Корзина
+    </div>
+    <div class="icon_3">
+        <form method="GET" th:action="@{/client/shopping-history}">
+            <button width="50px"><img th:src="@{/images/order.png}" width="50px"></button>
+        </form>
+        История</br>
+        заказов
+    </div>
+    <div class="icon_-2">
+        <form method="GET" th:action="@{/client/my-profile}">
+            <button width="50px"><img th:src="@{/images/profile.png}" width="50px"></button>
+        </form>
+        Профиль
+    </div>
+    <div class="icon_-1">
+        <form method="POST" th:action="@{/logout}">
+            <button width="50px"><img th:src="@{/images/exit.png}" width="50px"></button>
+        </form>
+        Выйти
+    </div>
+</div>
+<div class="settings" sec:authorize="hasRole('EMPLOYEE')">
+    <div class="icon_1">
+        <form method="GET" th:action="@{/}">
+            <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
+        </form>
+        В магазин
+    </div>
+    <div class="icon_2">
+        <form method="GET" th:action="@{/employee/add-book}">
+            <button width="50px"><img th:src="@{/images/book.png}" width="50px"></button>
+        </form>
+        Новая</br>
+        книга
+    </div>
+    <div class="icon_-2">
+        <form method="GET" th:action="@{/employee/my-profile}">
+            <button width="50px"><img th:src="@{/images/profile.png}" width="50px"></button>
+        </form>
+        Профиль
+    </div>
+    <div class="icon_-1">
+        <form method="POST" th:action="@{/logout}">
+            <button width="50px"><img th:src="@{/images/exit.png}" width="50px"></button>
+        </form>
+        Выйти
+    </div>
+</div>
+<div class="settings" sec:authorize="!isAuthenticated()">
+    <div class="icon_1">
+        <form method="GET" th:action="@{/}">
+            <button width="50px"><img th:src="@{/images/back.png}" width="50px"></button>
+        </form>
+        В магазин
+    </div>
+    <div class="icon_-1">
+        <form method="GET" th:action="@{/login}">
+            <button width="50px"><img th:src="@{/images/login.png}" width="50px"></button>
+        </form>
+        Войти
+    </div>
+</div>
+<div class="main_frame">
+    <div class="t1">
+        <p> Книга "<span th:text="${bookById.book.title}"/>"</p>
+    </div>
+    <div class="image_container_big">
+        <img class="image" th:src="@{${bookById.book.urlPicture}}">
+    </div>
+    <div class="text_container_big">
+        <div class="b1">
+            <div> Рейтинг: <span th:if="${bookById.book.rate != 0}" th:text="${bookById.book.rate}"/>
+                <span th:if="${bookById.book.rate == 0}">рейтинга нет</span></div>
+            <div> Автор: <span th:text="${bookById.book.author}"/></div>
+            <div> Жанр: <span th:text="${bookById.book.genre}"/></div>
+            <div> Язык: <span th:text="${bookById.book.language}"/></div>
+        </div>
+        <div class="r1">
+            <p th:text="${bookById.book.description}"></p>
+        </div>
+        <div class="r2">
+            <p><span th:if="${bookById.book.year_ != 0}" th:text="${bookById.book.year_}"/>
+                <span th:if="${bookById.book.year_ == 0}">????</span> год,
+                <span th:if="${bookById.book.pageCnt != 0}" th:text="${bookById.book.pageCnt}"/>
+                <span th:if="${bookById.book.pageCnt == 0}">???</span> стр.,
+                ISBN <span th:text="${bookById.book.isbn}" /></p>
+        </div>
+        <div class="b1">
+            <div> Сейчас в наличии: <span th:text="${bookById.book.count}"/> штук<span th:text="${bookById.book.getEnd()}"/></div>
+            <div> Цена: <span th:text="${bookById.book.cost}"/> р.</div>
+        </div>
+        <form method="GET" sec:authorize="hasRole('EMPLOYEE')" th:action="@{'/employee/redact-book/'+${bookById.book.id}}">
+            <button class="big_button">Редактировать книгу</button>
+        </form>
+        <form method="GET" sec:authorize="hasRole('CLIENT')" th:action="@{'/client/add/'+${bookById.book.id}}">
+            <button class="big_button" th:if="${!bookById.isInCart && bookById.book.count>=1}">Добавить в корзину</button>
+            <button class="big_button" th:if="${bookById.book.count<1}" disabled>Товар закончился</button>
+            <button class="big_button" th:if="${bookById.isInCart && bookById.book.count>=1}">Добавить ещё</button>
+        </form>
+        <form method="GET" sec:authorize="!isAuthenticated()" th:action="@{'/client/add/'+${bookById.book.id}}">
+            <button class="big_button" th:if="${bookById.book.count>=1}">Добавить в корзину</button>
+            <button class="big_button" th:if="${bookById.book.count<1}" disabled>Товар закончился</button>
+        </form>
+        <form method="GET" sec:authorize="hasRole('CLIENT')" th:if="${bookById.isInCart}" th:action="@{'/client/delete/'+${bookById.book.id}}">
+            <button class="big_button">Убрать из корзины</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>
